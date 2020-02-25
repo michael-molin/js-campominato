@@ -42,9 +42,10 @@ function numRandom(numMax) {
 
 function settaDifficolta () {
     var difficolta = prompt('Ciao! Scegli la difficoltà: Facile, Intermedio e Difficile');
+    difficolta = difficolta.toLowerCase();
     switch (difficolta) {
         case "facile":
-             return 100;
+            return 100;
             break;
         case "intermedio":
             return 80;
