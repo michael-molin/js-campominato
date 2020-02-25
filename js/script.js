@@ -5,7 +5,7 @@ var arrayMieiNumeri = [];
 var punteggio = 0;
 console.log(arrayMine);
 
-for (var i = 1; i < (100-arrayMineLength) ; i++) {
+for (var i = 1; i <= (100-arrayMineLength) ; i++) {
     var numero = parseInt(prompt('Chiamata #' + i + '. Inserici il numero: '));
     if (arrayMine.includes(numero)) {
         alert('Hai colpito una mina! GAME OVER! Il tuo punteggio è di: ' + punteggio);
@@ -13,13 +13,15 @@ for (var i = 1; i < (100-arrayMineLength) ; i++) {
     } else if (arrayMieiNumeri.includes(numero)) {
         alert('Numero già inserito');
         i--;
-    } else if (i== (100-arrayMineLength)) {
-        alert('HAI COMPLETATO IL GIOCO, HAI VINTO IL TUO PUNTEGGIO E\' ' + punteggio);
-    }
-     else {
+    } else {
         arrayMieiNumeri.push(numero);
         punteggio += 1;
         console.log(arrayMieiNumeri);
+    }
+
+    if (i== (100-arrayMineLength)) {
+        alert('HAI COMPLETATO IL GIOCO, HAI VINTO IL TUO PUNTEGGIO E\' ' + punteggio);
+        break;
     }
 }
 
