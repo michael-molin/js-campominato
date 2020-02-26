@@ -1,6 +1,6 @@
 var rangeNumeri = settaDifficolta();
 var arrayBombeLunghezza =16;
-var arrayBombe = creaMine(arrayBombeLunghezza, rangeNumeri);
+var arrayBombe = creaBombe(arrayBombeLunghezza, rangeNumeri);
 var arrayMieiNumeri = [];
 var check = false;
 console.log(arrayBombe);
@@ -22,7 +22,7 @@ while ((arrayMieiNumeri.length <= (100 - arrayBombeLunghezza)) && (!check )) {
     }
 }
 
-function creaMine (arrayBombeLungh, numMax) {
+function creaBombe (arrayBombeLungh, numMax) {
     var arrayBombeTemp = [];
     while (arrayBombeTemp.length <= arrayBombeLungh-1) {
         var numero = numRandom(numMax);
