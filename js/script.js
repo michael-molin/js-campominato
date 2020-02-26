@@ -1,15 +1,14 @@
 var rangeNumeri = settaDifficolta();
-var arrayMineLunghezza =16;
-console.log('range e lunghezza impostata');
-var arrayMine = creaMine(arrayMineLunghezza, rangeNumeri);
+var arrayBombeLunghezza =16;
+var arrayBombe = creaMine(arrayBombeLunghezza, rangeNumeri);
 var arrayMieiNumeri = [];
 var check = false;
-console.log(arrayMine);
+console.log(arrayBombe);
 
-while ((arrayMieiNumeri.length <= (100 - arrayMineLunghezza)) && (!check )) {
+while ((arrayMieiNumeri.length <= (100 - arrayBombeLunghezza)) && (!check )) {
     var numeroControllato = checkNumero();
-    if (arrayMine.includes(numeroControllato)) {
-        alert('Hai colpito una mina! GAME OVER! Il tuo punteggio è di: ' + arrayMieiNumeri.length);
+    if (arrayBombe.includes(numeroControllato)) {
+        alert('Hai colpito una Bomba! GAME OVER! Il tuo punteggio è di: ' + arrayMieiNumeri.length);
         check= true;
 }   else if (arrayMieiNumeri.includes(numeroControllato)) {
         alert('Numero già inserito');
@@ -17,21 +16,21 @@ while ((arrayMieiNumeri.length <= (100 - arrayMineLunghezza)) && (!check )) {
         arrayMieiNumeri.push(numeroControllato);
         console.log(arrayMieiNumeri);
 }
-    if (arrayMieiNumeri.length== (100 - arrayMineLunghezza)) {
+    if (arrayMieiNumeri.length == (100 - arrayBombeLunghezza)) {
             alert('HAI COMPLETATO IL GIOCO, HAI VINTO IL TUO PUNTEGGIO E\' ' + arrayMieiNumeri.length);
             check= true;
     }
 }
 
-function creaMine (arrayMineLungh, numMax) {
-    var arrayMineTemp = [];
-    while (arrayMineTemp.length <= arrayMineLungh-1) {
+function creaMine (arrayBombeLungh, numMax) {
+    var arrayBombeTemp = [];
+    while (arrayBombeTemp.length <= arrayBombeLungh-1) {
         var numero = numRandom(numMax);
-        if (!arrayMineTemp.includes(numero)) {
-            arrayMineTemp.push(numero);
+        if (!arrayBombeTemp.includes(numero)) {
+            arrayBombeTemp.push(numero);
         }
     }
-    return arrayMineTemp;
+    return arrayBombeTemp;
 }
 
 function numRandom(numMax) {
@@ -58,7 +57,7 @@ function checkNumero() {
     var check = false;
     do {
         var numero = parseInt(prompt('Inserici un numero da 1 a 100: '));
-        if ((!isNaN(numero)) && (numero >0) && (numero<= 100)) {
+        if ((!isNaN(numero)) && (numero > 0) && (numero<= 100)) {
             check = true;
         } else {
             alert('Non hai inserito un numero corretto');
