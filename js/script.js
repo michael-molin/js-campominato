@@ -1,38 +1,34 @@
 var rangeNumeri = settaDifficolta();
-var arrayMineLength = 16;
-var arrayMine = creaMine(arrayMineLength);
+var arrayMineLunghezza =16;
+console.log('range e lunghezza impostata');
+var arrayMine = creaMine(arrayMineLunghezza, rangeNumeri);
 var arrayMieiNumeri = [];
-var punteggio = 0;
+var check = false;
 console.log(arrayMine);
 
-for (var i = 1; i <= (100-arrayMineLength) ; i++) {
-    var numero = parseInt(prompt('Chiamata #' + i + '. Inserici il numero: '));
-    if (arrayMine.includes(numero)) {
-        alert('Hai colpito una mina! GAME OVER! Il tuo punteggio è di: ' + punteggio);
-        break;
-    } else if (arrayMieiNumeri.includes(numero)) {
+while ((arrayMieiNumeri.length <= (100 - arrayMineLunghezza)) && (!check )) {
+    var numeroControllato = checkNumero();
+    if (arrayMine.includes(numeroControllato)) {
+        alert('Hai colpito una mina! GAME OVER! Il tuo punteggio è di: ' + arrayMieiNumeri.length);
+        check= true;
+}   else if (arrayMieiNumeri.includes(numeroControllato)) {
         alert('Numero già inserito');
-        i--;
-    } else {
-        arrayMieiNumeri.push(numero);
-        punteggio += 1;
+}   else {
+        arrayMieiNumeri.push(numeroControllato);
         console.log(arrayMieiNumeri);
-    }
-
-    if (i== (100-arrayMineLength)) {
-        alert('HAI COMPLETATO IL GIOCO, HAI VINTO IL TUO PUNTEGGIO E\' ' + punteggio);
-        break;
+}
+    if (arrayMieiNumeri.length== (100 - arrayMineLunghezza)) {
+            alert('HAI COMPLETATO IL GIOCO, HAI VINTO IL TUO PUNTEGGIO E\' ' + arrayMieiNumeri.length);
+            check= true;
     }
 }
 
-function creaMine (arrayMineLength) {
-    var i = 1;
+function creaMine (arrayMineLungh, numMax) {
     var arrayMineTemp = [];
-    while (i <= arrayMineLength) {
-        var numero = numRandom(rangeNumeri);
+    while (arrayMineTemp.length <= arrayMineLungh-1) {
+        var numero = numRandom(numMax);
         if (!arrayMineTemp.includes(numero)) {
             arrayMineTemp.push(numero);
-            i++;
         }
     }
     return arrayMineTemp;
@@ -48,15 +44,25 @@ function settaDifficolta () {
     switch (difficolta) {
         case "facile":
             return 100;
-            break;
         case "intermedio":
             return 80;
-            break;
         case "difficile":
             return 50;
-            break;
         default:
             console.log('Dato incorretto, ricaricare la pagina');
             break;
     }
+}
+
+function checkNumero() {
+    var check = false;
+    do {
+        var numero = parseInt(prompt('Inserici un numero da 1 a 100: '));
+        if ((!isNaN(numero)) && (numero >0) && (numero<= 100)) {
+            check = true;
+        } else {
+            alert('Non hai inserito un numero corretto');
+        }
+    } while (!check);
+    return numero;
 }
